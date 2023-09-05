@@ -1,0 +1,7 @@
+create view new_tasks ( id, name)  as select * from task where parent_id >= 3;
+
+
+create or replace view outreach  as 
+select contact_type, contact, last_name 
+from emp_sm_contact, employees
+where emp_sm_contact.emp_id = employees.employee_id;

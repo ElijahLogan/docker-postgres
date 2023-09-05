@@ -1,0 +1,60 @@
+# goood site 
+https://www.docker.com/blog/how-to-use-the-postgres-docker-official-image/
+
+
+adding iles into the entrypoint for docker
+    the file has to be nested in a folder for it to be picked up and read. 
+    Formatting is important in the file, it can be read and not be created because of errors
+    formatting is different for mysql annd postgres 
+    check the log of the postgres container to see whats in the database 
+
+
+    Sometime I'll get the error 
+Unable to connect to PostgreSQL server: could not connect to server: Connection refused Is the server running on host "pdb" (192.168.32.2) and accepting TCP/IP connections on port 5432?
+or 
+psql: error: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: No such file or directordpy
+        Is the server running locally and accepting connections on that socket
+
+
+to solve run
+    killall Docker && open /Applications/Docker.app
+    | docker volume prune |  after | docker-compose down | then  | brew services stop postgresql |
+link: https://stackoverflow.com/questions/12028037/postgres-app-could-not-start-on-port-5432
+
+
+
+tp really solve 
+killall Docker && open /Applications/Docker.app
+
+
+docker has to be closed then restarted for when it gets the aforementioined error 
+
+
+check process on port 
+    lsof -i :5432
+    kill -9 <PID>
+
+    
+
+sql: error: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: No such file or directory
+        Is the server running locally and accepting connections on that socket
+
+
+
+ ps auxw | grep post 
+
+
+ The command "ps auxw | grep post" will list all the processes running on your system that contain the string "post" in their name. 
+ This can be useful for finding out if the PostgreSQL server is running or not.
+
+ what is auxw
+
+The command "ps auxw" is a Linux command used to display information about the currently running processes on the system. It stands for "processes all users with wide output". 
+The "auxw" option is used to display all processes for all users in a wide format, which includes additional columns of information.
+
+
+
+
+
+
+https://stackoverflow.com/questions/45637206/docker-is-the-server-running-on-host-localhost-1-and-accepting-tcp-ip-con

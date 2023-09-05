@@ -1,0 +1,31 @@
+version: '3.6'
+ 
+services:
+ 
+  pdb:
+    image: postgres
+    container_name: post
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+    ports:
+      - 5432:5432
+    volumes:
+      - ./data/db.sql:/docker-entrypoint-initdb.d/db.sql
+  adminer:
+    image: adminer
+    depends_on:
+      - pdb
+    restart: always
+    ports:
+      - 8080:8080
+  pgadmin:
+    image: dpage/pgadmin4
+    depends_on:
+      - pdb
+    ports:
+      - 7070:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
+      PGADMIN_DEFAULT_PASSWORD: admin
+    restart: unless-stopped
